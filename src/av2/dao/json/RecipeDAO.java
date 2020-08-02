@@ -15,9 +15,9 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
-import av3.dao.InterfaceRecipeDAO;
-import av3.model.Ingredient;
-import av3.model.Recipe;
+import av2.dao.InterfaceRecipeDAO;
+import av2.model.Ingredient;
+import av2.model.Recipe;
 
 public class RecipeDAO implements InterfaceRecipeDAO {
 
@@ -25,7 +25,7 @@ public class RecipeDAO implements InterfaceRecipeDAO {
 	private String fileName = "recipes.json";
 
 	@Override
-	public boolean inserir(Recipe recipe) {
+	public boolean insert(Recipe recipe) {
 
 		// Creates an json-array of ingredients with the recipe ingredients list
 		JsonArrayBuilder ingredientsArray = Json.createArrayBuilder();
@@ -81,7 +81,7 @@ public class RecipeDAO implements InterfaceRecipeDAO {
 	}
 
 	@Override
-	public boolean remover(String title) {
+	public boolean remove(String title) {
 		String gravar = "";
 		File f = new File(path + fileName);
 		int found = -1;
@@ -140,8 +140,8 @@ public class RecipeDAO implements InterfaceRecipeDAO {
 			
 			Recipe updatedRecipe = new Recipe(newTitle, newAuthor, newHowTo, newIngredientes);
 			
-			remover(title);
-			inserir(updatedRecipe);
+			remove(title);
+			insert(updatedRecipe);
 			return updatedRecipe;
 		}
 		return null;

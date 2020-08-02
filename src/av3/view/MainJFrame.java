@@ -185,7 +185,7 @@ public class MainJFrame extends JFrame {
 				public void actionPerformed(ActionEvent arg0) {
 					int selectedRow = tableRecipes.getSelectedRow();
 					String recipeTitle = tableRecipes.getValueAt(selectedRow, 0).toString();
-					recipeDAO.remover(recipeTitle);
+					recipeDAO.remove(recipeTitle);
 					listRecipesJPanel.reloadData();
 				}
 			});
@@ -228,7 +228,7 @@ public class MainJFrame extends JFrame {
 					} else {
 						
 						Recipe recipe = new Recipe(title, author, howTo, ingredients);
-						recipeDAO.inserir(recipe);
+						recipeDAO.insert(recipe);
 					}
 					
 					registerRecipePanel.clearRecipeData();

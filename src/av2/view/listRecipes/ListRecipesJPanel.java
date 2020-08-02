@@ -17,8 +17,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-import av3.dao.json.RecipeDAO;
-import av3.model.Recipe;
+import av2.dao.json.RecipeDAO;
+import av2.model.Recipe;
 
 import java.awt.Rectangle;
 
