@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import av3.dao.DAOException;
 import av3.dao.json.RecipeDAO;
 import av3.model.Ingredient;
 import av3.model.Recipe;
@@ -185,7 +186,11 @@ public class MainJFrame extends JFrame {
 				public void actionPerformed(ActionEvent arg0) {
 					int selectedRow = tableRecipes.getSelectedRow();
 					String recipeTitle = tableRecipes.getValueAt(selectedRow, 0).toString();
-					recipeDAO.remove(recipeTitle);
+					try {
+						recipeDAO.remove(recipeTitle);
+					} catch (DAOException e) {
+						e.printStackTrace();
+					}
 					listRecipesJPanel.reloadData();
 				}
 			});
@@ -223,12 +228,20 @@ public class MainJFrame extends JFrame {
 						String oldTitle = tableRecipes.getValueAt(selectedRow, 0).toString();
 						
 						Object [] data = {title, author,howTo,ingredients};
-						recipeDAO.updateRecipe(oldTitle, data);
+						try {
+							recipeDAO.updateRecipe(oldTitle, data);
+						} catch (DAOException e) {
+							e.printStackTrace();
+						}
 					
 					} else {
 						
 						Recipe recipe = new Recipe(title, author, howTo, ingredients);
-						recipeDAO.insert(recipe);
+						try {
+							recipeDAO.insert(recipe);
+						} catch (DAOException e) {
+							e.printStackTrace();
+						}
 					}
 					
 					registerRecipePanel.clearRecipeData();

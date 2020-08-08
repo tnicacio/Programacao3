@@ -6,9 +6,9 @@ import av3.model.Recipe;
 
 public interface InterfaceRecipeDAO {
 	
-	boolean insert(Recipe recipe);
-	boolean remove(String title);
-	Recipe updateRecipe(String title, Object[] data);
+	void insert(Recipe recipe) throws DAOException;
+	void remove(String title) throws DAOException;
+	Recipe updateRecipe(String title, Object[] data) throws DAOException;
 	Recipe findByName(String title);
 	ArrayList<Recipe> listRecipes();
 
